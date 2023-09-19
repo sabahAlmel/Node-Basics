@@ -43,6 +43,10 @@ function onDataReceived(text) {
     displayAll("hello", "help", "quit", "exit");
   } else if (text === "list\n") {
     displayTasks(tasks);
+  } else if (text.split(" ")[0] === "add") {
+    tasks.push(text.split(" ")[1]);
+  } else if (text === "add\n") {
+    console.log("error");
   } else {
     unknownCommand(text);
   }
