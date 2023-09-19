@@ -36,9 +36,19 @@ function onDataReceived(text) {
     quit();
   } else if (text === "hello\n") {
     hello();
+  } else if (text === "help\n") {
+    displayAll("hello", "help", "quit", "exit");
   } else {
     unknownCommand(text);
   }
+}
+
+function displayAll(...all) {
+  console.log("--------------------");
+  all.forEach((value) => {
+    console.log(value);
+  });
+  console.log("--------------------");
 }
 
 /**
