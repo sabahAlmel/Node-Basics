@@ -32,6 +32,13 @@ function startApp(name) {
  * @returns {void}
  *now if we enter just hello or hello x the result should be 
  hello x! or hello!
+ *we create a global variable tasks wich is an empty array
+ * we add list command that display all tasks
+ * then we do an add command that add task to the array tasks
+ * if its just 'add' without anything it give an error
+ * and remove command, if we write just 'remove' it remove the last element
+ * if we add remove and index it remove this index 
+ * but if this index is 0 and less or gratear than the tasks length it give an error
  */
 var tasks = [];
 function onDataReceived(text) {
