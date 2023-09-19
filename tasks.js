@@ -30,7 +30,8 @@ function startApp(name) {
  *
  * @param  {string} text data typed by the user
  * @returns {void}
- *
+ *now if we enter just hello or hello x the result should be 
+ hello x! or hello!
  */
 function onDataReceived(text) {
   if (text === "quit\n" || text === "exit\n") {
@@ -69,6 +70,7 @@ function unknownCommand(c) {
  * Says hello
  *@param {string} text
  * @returns {void}
+ * we take the text with trim so it remove \n and we concat the text with !
  */
 function hello(text) {
   console.log(text + "!");
