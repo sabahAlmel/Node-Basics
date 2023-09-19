@@ -47,6 +47,12 @@ function onDataReceived(text) {
     tasks.push(text.split(" ")[1]);
   } else if (text === "add\n") {
     console.log("error");
+  } else if (text === "remove\n") {
+    tasks.pop();
+  } else if (text.split(" ")[0] === "remove") {
+    if (text.split(" ")[1] <= 0 || text.split(" ")[1] > tasks.length)
+      console.log("this index not found");
+    else tasks.splice(Number(text.split(" ")[1]) - 1, 1);
   } else {
     unknownCommand(text);
   }
