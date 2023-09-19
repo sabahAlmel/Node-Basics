@@ -43,6 +43,8 @@ function onDataReceived(text) {
   }
 }
 
+// this function take as parameter all the available comment
+// and display them when the user enter help
 function displayAll(...all) {
   console.log("--------------------");
   all.forEach((value) => {
