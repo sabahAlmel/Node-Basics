@@ -33,6 +33,7 @@ function startApp(name) {
  *now if we enter just hello or hello x the result should be 
  hello x! or hello!
  */
+var tasks = [];
 function onDataReceived(text) {
   if (text === "quit\n" || text === "exit\n") {
     quit();
@@ -40,6 +41,8 @@ function onDataReceived(text) {
     hello(text.trim());
   } else if (text === "help\n") {
     displayAll("hello", "help", "quit", "exit");
+  } else if (text === "list\n") {
+    displayTasks(tasks);
   } else {
     unknownCommand(text);
   }
@@ -52,6 +55,12 @@ function displayAll(...all) {
   all.forEach((value) => {
     console.log(value);
   });
+  console.log("--------------------");
+}
+
+function displayTasks(tasks) {
+  console.log("--------------------");
+  tasks.forEach((item) => console.log(item));
   console.log("--------------------");
 }
 
