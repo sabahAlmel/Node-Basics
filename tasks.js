@@ -39,6 +39,7 @@ function startApp(name) {
  * and remove command, if we write just 'remove' it remove the last element
  * if we add remove and index it remove this index 
  * but if this index is 0 and less or gratear than the tasks length it give an error
+ * so this is the better remove
  */
 var tasks = [];
 function onDataReceived(text) {
