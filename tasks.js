@@ -32,6 +32,7 @@ function startApp(name) {
  * @returns {void}
  *now if we enter just hello or hello x the result should be 
  hello x! or hello!
+ *
  *we create a global variable tasks wich is an empty array
  * we add list command that display all tasks
  * then we do an add command that add task to the array tasks
@@ -40,6 +41,15 @@ function startApp(name) {
  * if we add remove and index it remove this index 
  * but if this index is 0 and less or gratear than the tasks length it give an error
  * so this is the better remove
+ * 
+ * we put the edit command to edit an existing task
+ * if the user enter just edit it give an error
+ * else if they enter edit and the new value it will edit the last task
+ * else if they enter edit with index and new value it edit this specific task
+ * 
+ * we add the check/uncheck command so we can now check the done task
+ * and uncheck the task we don't need it by doing the variable task an array of object
+ * this object containing 2 key(title of the task and done if it's checked or not)
  */
 var tasks = [];
 function onDataReceived(text) {
