@@ -52,7 +52,8 @@ function onDataReceived(text) {
   } else if (text === "list\n") {
     displayTasks(tasks);
   } else if (text.split(" ")[0] === "add") {
-    tasks.push(text.split(" ")[1]);
+    let title = text.slice(4);
+    tasks.push({ title: title, done: true });
   } else if (text === "add\n") {
     console.log("error");
   } else if (text === "remove\n") {
@@ -63,12 +64,22 @@ function onDataReceived(text) {
     else tasks.splice(Number(text.split(" ")[1]) - 1, 1);
   } else if (text === "edit\n") {
     console.log("error enter the value or index to edit");
-  } else if (text.split(" ")[0] === "edit" && text.split(" ").length == 2) {
-    tasks[tasks.length - 1] = text.split(" ")[1];
-  } else if (text.split(" ")[0] === "edit" && text.split(" ").length == 3) {
+  } else if (
+    text.split(" ")[0] === "edit" &&
+    isNaN(text.split(" ")[1]) &&
+    text.split(" ").length >= 2
+  ) {
+    tasks[tasks.length - 1] = text.slice(5);
+  } else if (text.split(" ")[0] === "edit" && text.split(" ").length >= 3) {
     if (text.split(" ")[1] <= 0 || text.split(" ")[1] > tasks.length)
       console.log("this index not found to edit it");
-    else tasks[Number(text.split(" ")[1]) - 1] = text.split(" ")[2];
+    else {
+      if (text.split(" ")[1] < 10)
+        tasks[Number(text.split(" ")[1]) - 1] = text.slice(7);
+      else if (text.split(" ")[1] > 10 && text.split(" ")[1] < 100)
+        tasks[Number(text.split(" ")[1]) - 1] = text.slice(8);
+      else tasks[Number(text.split(" ")[1]) - 1] = text.slice(9);
+    }
   } else {
     unknownCommand(text);
   }
@@ -86,7 +97,10 @@ function displayAll(...all) {
 
 function displayTasks(tasks) {
   console.log("--------------------");
-  tasks.forEach((item) => console.log(item));
+  tasks.forEach((item) => {
+    if (item.done == false) console.log("[ ] " + item.title);
+    else console.log("[✓] " + item.title);
+  });
   console.log("--------------------");
 }
 
