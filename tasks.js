@@ -53,7 +53,7 @@ function onDataReceived(text) {
     displayTasks(tasks);
   } else if (text.split(" ")[0] === "add") {
     let title = text.slice(4);
-    tasks.push({ title: title, done: true });
+    tasks.push({ title: title, done: false });
   } else if (text === "add\n") {
     console.log("error");
   } else if (text === "remove\n") {
@@ -80,6 +80,18 @@ function onDataReceived(text) {
         tasks[Number(text.split(" ")[1]) - 1] = text.slice(8);
       else tasks[Number(text.split(" ")[1]) - 1] = text.slice(9);
     }
+  } else if (text === "check\n") {
+    console.log("error enter the index of the task");
+  } else if (text.split(" ")[0] === "check") {
+    if (text.split(" ")[1] <= 0 || text.split(" ")[1] > tasks.length)
+      console.log("this index not found to edit it");
+    else tasks[Number(text.split(" ")[1]) - 1].done = true;
+  } else if (text === "uncheck\n") {
+    console.log("error enter the index of the task");
+  } else if (text.split(" ")[0] === "uncheck") {
+    if (text.split(" ")[1] <= 0 || text.split(" ")[1] > tasks.length)
+      console.log("this index not found to edit it");
+    else tasks[Number(text.split(" ")[1]) - 1].done = false;
   } else {
     unknownCommand(text);
   }
