@@ -1,3 +1,5 @@
+let fs = require("fs");
+let path = require("path");
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -14,6 +16,19 @@ function startApp(name) {
   process.stdin.on("data", onDataReceived);
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
+  try {
+    let data = fs.readFileSync(
+      path.join(__dirname, "", "database.json"),
+      "utf-8"
+    );
+    tasks = JSON.parse(data);
+  } catch (err) {
+    if (err.code === "ENOENT") {
+      console.error("File not found:", path);
+    } else {
+      console.error("Error reading the file:", err);
+    }
+  }
 }
 
 /**
@@ -154,6 +169,14 @@ function hello(text) {
  */
 function quit() {
   console.log("Quitting now, goodbye!");
+  const dataToWrite = JSON.stringify(tasks);
+  fs.writeFileSync(
+    path.join(__dirname, "", "database.json"),
+    dataToWrite,
+    (err) => {
+      console.log(err);
+    }
+  );
   process.exit();
 }
 
