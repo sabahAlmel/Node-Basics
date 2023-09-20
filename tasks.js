@@ -1,5 +1,6 @@
 let fs = require("fs");
 let path = require("path");
+const filename = process.argv[2] || "database.json";
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -17,10 +18,7 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
   try {
-    let data = fs.readFileSync(
-      path.join(__dirname, "", "database.json"),
-      "utf-8"
-    );
+    let data = fs.readFileSync(path.join(__dirname, "", filename), "utf-8");
     tasks = JSON.parse(data);
   } catch (err) {
     if (err.code === "ENOENT") {
@@ -170,13 +168,9 @@ function hello(text) {
 function quit() {
   console.log("Quitting now, goodbye!");
   const dataToWrite = JSON.stringify(tasks);
-  fs.writeFileSync(
-    path.join(__dirname, "", "database.json"),
-    dataToWrite,
-    (err) => {
-      console.log(err);
-    }
-  );
+  fs.writeFileSync(path.join(__dirname, "", filename), dataToWrite, (err) => {
+    console.log(err);
+  });
   process.exit();
 }
 
