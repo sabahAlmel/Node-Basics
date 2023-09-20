@@ -61,6 +61,14 @@ function onDataReceived(text) {
     if (text.split(" ")[1] <= 0 || text.split(" ")[1] > tasks.length)
       console.log("this index not found");
     else tasks.splice(Number(text.split(" ")[1]) - 1, 1);
+  } else if (text === "edit\n") {
+    console.log("error enter the value or index to edit");
+  } else if (text.split(" ")[0] === "edit" && text.split(" ").length == 2) {
+    tasks[tasks.length - 1] = text.split(" ")[1];
+  } else if (text.split(" ")[0] === "edit" && text.split(" ").length == 3) {
+    if (text.split(" ")[1] <= 0 || text.split(" ")[1] > tasks.length)
+      console.log("this index not found to edit it");
+    else tasks[Number(text.split(" ")[1]) - 1] = text.split(" ")[2];
   } else {
     unknownCommand(text);
   }
